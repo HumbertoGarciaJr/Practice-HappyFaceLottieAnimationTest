@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="app.css">
+
+    <!-- Lottie Web Library (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.9.4/build/player/lottie.min.js"></script>
+
+    <title>Practice-Rive</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Canvas element for Lottie animation -->
+        <div id="animation-container" style="width: 500px; height: 500px;"></div>
+        <p>Happy Face - Lottie Animation Test</p>
+    </div>
+
+    <!-- Custom JS-->
+    <script src="script.js"></script>
+    <script>
+        main();
+
+        async function main() {
+            const lookingUp = await getData();
+
+            console.log(lookingUp);
+
+            // Load Lottie animation onto the page
+            lottie.loadAnimation({
+                container: document.getElementById('animation-container'), // Container element for the animation
+                renderer: 'svg', // You can use 'svg', 'canvas', or 'html' as the renderer
+                loop: true, // Enable loop (optional)
+                autoplay: true, // Enable autoplay (optional)
+                animationData: lookingUp, // The loaded animation data
+            });
+        };
+
+        async function getData() {
+            const res = await fetch("assets/data.json");
+            const data = await res.json();
+
+            return data;
+        };
+    </script>
+</body>
+</html>
